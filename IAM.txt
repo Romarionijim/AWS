@@ -77,3 +77,29 @@ common roles:
 * ec2 instance roles - allows the ec2 to perform actions against the role that I gave it by the policy permission that the role has
 * lambda function roles
 * roles for cloudformation
+
+IAM security tools:
+1. IAM credentials report (Account level)
+report that lists of all my account's users and the status of their credentials
+2. IAM access advisor (user-level)
+show the service permissions granted to a user and when those services were last accessed, so we can see which permissions is not getting used
+and we could remove that permission from that specific user in order to be inline with the principle of least privileges.
+
+IAM guidelines && best practices:
+dont use root account - except when you setup your aws account
+one physical user = one AWS user => do not give your credentials if a friend wants to use AWS - INSTEAD CREATE ANOTHER USER TO THEM via IAM
+assign users to groups and assign permission to groups to make sure that security is managed at the group level.
+create a strong password policy
+use and enforce the use of MFA to really guarantee security
+create and use Roles for giving permissions to AWS services such as EC2 (virtual servers), Lambdas and cloudformation.
+use access keys for programmatic access (CLI / SDK) - you must generate access keys;
+Audit permissions of your account using IAM credentials report (list of all users with their credential status at account-level) and IAM access advisor (last access and use of services at user-level)
+
+shared responsibility model for IAM
+in IAM we are responsible for a lot things that aws will not do for me for example:
+I am responsible for creating my own users, groups, roles, policies, management of policies and monitoring of that.
+I am responsible for enabling MFA on all accounts and enforcing it, not AWS.
+I am responsible to make sure keys are rotated often.
+I am responsible to use IAM tools to apply appropriate permissions
+I am responsible to analyze access patterns && review permissions.
+in summary - AWS is responsible for all of the infrastructure but we are responsible for how we use that infrastructure.

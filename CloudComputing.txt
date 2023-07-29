@@ -24,5 +24,5 @@ statement consists of
 * effect - if the statement allows or denies access to certain API (allow, deny)
 * principal: account/user/role to which this policy applies to
 * Action: list of actions this policy allows or denies
-
-
+* Recourse: list of recourses to which the actions applied to! - s3 bucket and etc..
+* condition - optional => condition for when this policy is in effect

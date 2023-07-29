@@ -61,3 +61,20 @@ there are more such as DUO mobile and etc..
 Access keys are generated through AWS console.
 users can manage their own access keys.
 access keys are secret - do not share them!
+
+IAM roles:
+some aws services will need to perform actions on our behalf on our account
+we need to assign permissions to AWS services
+to do that => we need to create via IAM role
+these IAM roles will be just like a regular user but they are intended to be used not by physical people,
+they will be used by AWS services
+for example we might create an ec2 instance, this ec2 instance might want to use aws services on our behalf
+in order for it to do that we need to provide it with permission by creating an IAM role for it and they're going to make
+one entity.
+once the ec2 tries to access some information from AWS then it will sue the IAM role
+if the permission that is assigned to the IAM role is correct, then we are going to get access to the call that we are trying to make.
+
+common roles:
+* ec2 instance roles
+* lambda function toles
+* roles for cloudformation

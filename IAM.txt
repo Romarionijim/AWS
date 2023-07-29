@@ -10,6 +10,8 @@ we create users and groups to let users use our AWS
 we manage permissions via IAM.
 we need to give users permissions.
 users and groups can be assigned JSON documents called IAM policies.
+users can be in multiple groups
+when ech group has a policy and users have multiple groups they will inherit the policies from each group they're in
 do NOT give more permissions than a users actually needs.
 
 IAM Policy structure (JSON)
@@ -23,6 +25,24 @@ statement consists of
 * Sid: id for the statement - optional
 * effect - if the statement allows or denies access to certain API (allow, deny)
 * principal: account/user/role to which this policy applies to
-* Action: list of actions this policy allows or denies
-* Recourse: list of recourses to which the actions applied to! - s3 bucket and etc..
+* Action: list of actions/APIs this policy allows or denies
+* Recourse: list of recourses to which the actions applied to! - s3 bucket, which bucket and etc..
 * condition - optional => condition for when this policy is in effect
+
+
+MFA
+multi factor authentication
+you want to protect at least your root accounts and IAM users
+to secure these accounts well: use MFA
+MFA= password you know + security device you own
+password + MFA generated token => successful login
+even if a user has lost his password because it's stolen or hacked - the account will not be compromised since the hacker will
+need to get a hold of the physical device such as the user's phone to do a login
+
+1.MFA devices:
+* virtual MFA device => google authenticator phone only
+* Authy => multi device, support for multiple tokens on a single device
+with a  virtual MFA device you can have your root account and IAM user and another and another a many users as you want on the  virtual MFA device
+
+2.UTF security key
+* physical device third party such as USB yubikey - supports multiple root and IAM users.

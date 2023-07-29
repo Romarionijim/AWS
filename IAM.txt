@@ -1,5 +1,4 @@
 //IAM
-
 managing users
 identity and access management => global service.
 where you can add groups and users inside groups.
@@ -33,8 +32,8 @@ statement consists of
 MFA
 multi factor authentication
 you want to protect at least your root accounts and IAM users
-to secure these accounts well: use MFA
-MFA= password you know + security device you own
+to secure these accounts we'll: use MFA
+MFA = password you know + security device you own
 password + MFA generated token => successful login
 even if a user has lost his password because it's stolen or hacked - the account will not be compromised since the hacker will
 need to get a hold of the physical device such as the user's phone to do a login
@@ -42,7 +41,23 @@ need to get a hold of the physical device such as the user's phone to do a login
 1.MFA devices:
 * virtual MFA device => google authenticator phone only
 * Authy => multi device, support for multiple tokens on a single device
-with a  virtual MFA device you can have your root account and IAM user and another and another a many users as you want on the  virtual MFA device
+with a virtual MFA device you can have your root account and IAM user and another and another a many users as you want on the  virtual MFA device
+
+there are more such as DUO mobile and etc..
 
 2.UTF security key
 * physical device third party such as USB yubikey - supports multiple root and IAM users.
+
+3. hardware key fob
+
+4. AWS govCloud - hardware device
+
+//how can user access AWS?
+3 options:
+1. AWS management console (protected by password + MFA)
+2. AWS CLI (protected by access keys) => access AWS from our terminal => alternative to AWS management console.
+3. SDK software development kit for code (protected by access keys)
+
+Access keys are generated through AWS console.
+users can manage their own access keys.
+access keys are secret - do not share them!

@@ -12,6 +12,17 @@ we need to give users permissions.
 users and groups can be assigned JSON documents called IAM policies.
 do NOT give more permissions than a users actually needs.
 
+IAM Policy structure (JSON)
 
+consists of:
+* version, policy language version
+* ID, an identifier for the policy (optional)
+* statement: one or more individual statements (required)
+
+statement consists of
+* Sid: id for the statement - optional
+* effect - if the statement allows or denies access to certain API (allow, deny)
+* principal: account/user/role to which this policy applies to
+* Action: list of actions this policy allows or denies
 
 

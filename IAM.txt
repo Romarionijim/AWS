@@ -103,3 +103,14 @@ I am responsible to make sure keys are rotated often.
 I am responsible to use IAM tools to apply appropriate permissions
 I am responsible to analyze access patterns && review permissions.
 in summary - AWS is responsible for all of the infrastructure but we are responsible for how we use that infrastructure.
+
+summary of IAM:
+Users => mapped to a physical user, has a password for AWS console
+Groups => contains users only
+Policies => JSON document that outlines permissions for users or groups
+Roles => for EC2 instances for AWS services that performs actions on AWS on our behalf
+Security => MFA + Password Policy
+AWS-CLI => manage aws services using the command line
+AWS-SDK => manage your AWS services using a programming language
+ACCESS KEY => access AWS using the CLI or SDK
+AUDIT => we can audit our IAM usage by creating an IAM credentials report && also using the IAM access advisor service

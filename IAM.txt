@@ -28,7 +28,6 @@ statement consists of
 * Recourse: list of recourses to which the actions applied to! - s3 bucket, which bucket and etc..
 * condition - optional => condition for when this policy is in effect
 
-
 MFA
 multi factor authentication
 you want to protect at least your root accounts and IAM users
@@ -75,6 +74,6 @@ once the ec2 tries to access some information from AWS then it will sue the IAM 
 if the permission that is assigned to the IAM role is correct, then we are going to get access to the call that we are trying to make.
 
 common roles:
-* ec2 instance roles
-* lambda function toles
+* ec2 instance roles - allows the ec2 to perform actions against the role that I gave it by the policy permission that the role has
+* lambda function roles
 * roles for cloudformation

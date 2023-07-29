@@ -8,7 +8,7 @@ not best practice to leave users out of a group but still an option.
 we create users and groups to let users use our AWS
 we manage permissions via IAM.
 we need to give users permissions.
-users and groups can be assigned JSON documents called IAM policies.
+users and groups can be assigned to JSON documents called IAM policies.
 users can be in multiple groups
 when ech group has a policy and users have multiple groups they will inherit the policies from each group they're in
 do NOT give more permissions than a users actually needs.

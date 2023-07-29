@@ -1,3 +1,17 @@
 //IAM
 
-identity and access management => global service
+managing users
+identity and access management => global service.
+where you can add groups and users inside groups.
+groups contains only users and not other groups.
+user can belong to multiple groups.
+not best practice to leave users out of a group but still an option.
+we create users and groups to let users use our AWS
+we manage permissions via IAM.
+we need to give users permissions.
+users and groups can be assigned JSON documents called IAM policies.
+do NOT give more permissions than a users actually needs.
+
+
+
+

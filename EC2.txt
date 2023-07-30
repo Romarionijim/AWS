@@ -1,0 +1,48 @@
+//EC2
+
+EC2 = elastic compute cloud = infrastructure as a service IaaS on AWS.
+consists in the capability of:
+1. renting VMs (EC2) => which are called EC2 instances => rent on demand whenever we need.
+2. store data on visual drives EBS
+3. distributing load across machines
+4. scale services using ASG
+
+knowing ec2 is fundamental to understand how the cloud works
+
+EC2 sizing and config options:
+* OS for EC2:
+linux, windows or macOS
+* how much compute power CPU and cores
+* how much RAM
+* how much storage space (volumes)
+    network attachedEBS or EFS
+or hardware (EC2 instance store)
+network card: speed of the card, public IP address
+* firewall rules: security group
+* bootstrap script (configure at first launch): ec2 user data
+
+ec2 user data:
+it is possible to bootstrap our instances using an ec2 user data script
+bootstrapping means launching commands when a machine starts
+that script is only run at the instance first start
+ec2 user data is used to automate boot tasks such as:
+1. installing updates
+2. installing software
+3. downloading common files from the internet
+4. anything you can think of
+
+** the EC2 user data runs with a root user
+
+EC2 instance types - overview
+7 different instance types
+AWS has the following naming convention:
+for example => m5.2xlarge
+* m: instance class
+* 5: generation of the instance (generation of hardware)
+* 2xlarge: the size within the instance class, small, medium, large
+the more the size - the more the memory the more the cpu which makes it faster
+
+EC2 types:
+* general purposes => great for diversity of workloads such as web servers or code repositories
+* good balance between compute, memory and networking
+in the course - we'll be using t2.micro which is a general purpose EC2 instance (free tier)

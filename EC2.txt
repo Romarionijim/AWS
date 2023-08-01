@@ -15,7 +15,7 @@ linux, windows or macOS
 * how much compute power CPU and cores
 * how much RAM
 * how much storage space (volumes)
-    network attachedEBS or EFS
+    network attached EBS or EFS
 or hardware (EC2 instance store)
 network card: speed of the card, public IP address
 * firewall rules: security group
@@ -43,6 +43,33 @@ for example => m5.2xlarge
 the more the size - the more the memory the more the cpu which makes it faster
 
 EC2 types:
-* general purposes => great for diversity of workloads such as web servers or code repositories
+1. general purposes => great for diversity of workloads such as web servers or code repositories
 * good balance between compute, memory and networking
 in the course - we'll be using t2.micro which is a general purpose EC2 instance (free tier)
+
+2. compute optimized
+* great for compute-intensive tasks that require high performance processors:
+such as => batch processing workloads
+media transcoding
+high performance web servers
+high performance computing HPC
+machine learning
+dedicated gaming servers
+
+3. memory optimized
+* fast performance for workloads that process large data sets in memory
+such as:
+* high performance RDB or non RDB
+* distribute web scale cache stores
+in memory DB => BI
+applications performing real time processing of big unstructured data
+
+4. storage optimized instances
+* they are great when you are accessing a lot of data sets on the local storage
+* great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage.
+such as:
+high frequency online transaction processing OLTP
+Relational && noSQL DBs
+cache for in memory DB such as Redis
+data warehousing applications
+distributed file systems

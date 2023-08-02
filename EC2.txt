@@ -73,3 +73,68 @@ Relational && noSQL DBs
 cache for in memory DB such as Redis
 data warehousing applications
 distributed file systems
+
+* Security groups
+fundamental of network security in AWS
+they control how traffic is allowed into or out of our EC2 instances
+security groups only contain ALLOW rules - what is allowed to go in or to go out
+security group rules can reference by IP addresses (where our computer is from) or by other security groups can reference each other
+for example if we are on our computer and on the public internet and we are trying to access our EC2 instance from our computer
+we are going to a create a security group around our ec2 instance that is the firewall that is around it
+and this security group will have rules - what is allowed to go in or go out of our ec2 instance
+and these rules are going to say whether or not some inbound traffic from the outside into the ec2 instance is allowed
+and also if the ec2 instance can perform some outbound traffic to talk from where it is into the internet
+
+* so security group are acting as a firewall on ec2 instances
+* they regulate
+    access to ports
+    authorized ip ranges - ipv4 and ipv6 => these are the two kinds of IP on the internet
+    control the inbound network (from X to the instance)
+    control the outbound network (from instance to X )
+when we display the security group in the console it will consist:
+type: HTTP/SSH/Custom TCP
+protocol: TCP
+port range: 80, 22, 4567 and etc.. (the port allowing it - where the traffic can go through on the instance)
+source - represents the IP address range and 0.0.0.0/0 means everything and if there are numbers 122.149.196 and etc.. this means just one IP
+
+security group - good to know:
+* they can be attached to multiple instances and vice versa (an instance can have multiple security groups)
+* they are locked down to a region / VPC combination - meaning if we switch to another region we have to create a new security group
+* the security groups live outside of the EC2 - if traffic is blocked - the ec2 instance wont see it (its a firewall outside of the ec2 instance)
+* advice: it's good to maintain one separate security group for SSH access
+* if the application is not accessible (time out) then it's a security group issue.
+* if your application receives a "connection refused" error then it's an application error or it's not launched
+* by default all inbound traffic is blocked
+* by default all outbound traffic is authorized
+
+classic ports to know:
+* port 22 = SSH secure shell - this allows you to login to an EC2 instance on linux
+* port 21 =  FTP (file transfer protocol) = upload files to a file share
+* port 22 = SFTP (Secure file transfer protocol) - upload files using SSH, also using port 22, why ? because we are going to upload file but this
+time using ssh because it's going to be a secure file transfer protocol
+* port 80 = HTTP - to access unsecured websites
+* 443 = HTTPS - to access secure websites
+* 3389 - RDP (Remote desktop protocol) - this allows you to login to an EC2 instance on windows
+
+SSH:
+how to connect to our servers to perform some maintenance or action  using SSH
+SSH summary table
+1. Mac
+2. Linux
+3. windows < 10
+4. windows >= 10
+
+
+SSH => the ssh is a command line interface utility that can be used on macOS and linux as well as windows over version 10
+Putty  windows < 10 + windows >= 10  => 10 use putty to use ssh protocol to connect to the ec2 instance
+EC2 instance connect => going to use your web browser and not a terminal to connect to your EC2 instance and can be used on all mentioned OS
+(LINUX MAC WINDOWS) so it is valid for them all
+EC2 instance connect only works for Amazon NX2
+
+what is SSH
+
+SSH is one of the most important functions, it allows you to control a remote machine or server, all using the command line or terminal
+for example if we have an EC2 machine linux public IP that has a security group rule on port 22 which uses of type SSH
+so what's going to happen is at our computer we'll access over the web through that port 22 - it will access the ec2 machine
+so basically our command line interface is going to be just as if we are inside that machine
+

@@ -234,3 +234,25 @@ no time commitment, create cancel anytime no billing discounts - the only purpos
 combine with regional reserved instances and savings plans to benefit from billing discounts
 your charged at on demand rate whether you run instances or not
 recommended for short-term and un-interrupted workloads that needs to be in a specific Availability Zone
+
+**make sure to view the slides for the resort examples
+
+shared responsibility model for EC2:
+
+AWS responsibility:
+infra - global network security
+isolation on physical hosts
+replacing faulty hardware
+compliance validation with regulations that they have agreed on
+
+user responsibility:
+security in the cloud
+security group rules - allows you or other people to access or not your EC2 instances
+you own the entire VM inside the EC2 instance such as OS systems patches and updates you have to do them
+aws gives you the VM and it's up to you to handle it the way you want
+user is responsible for software and utils are installed on the ec2 instance - understanding how to assign IAM roles
+and make sure permissions are correct
+IAM roles assigned to EC2 && IAM user access management
+make sure data is secure on your instance
+
+EC2 AMI (OS)

@@ -138,3 +138,10 @@ for example if we have an EC2 machine linux public IP that has a security group 
 so what's going to happen is at our computer we'll access over the web through that port 22 - it will access the ec2 machine
 so basically our command line interface is going to be just as if we are inside that machine
 
+how to SSH on linux =>
+copy the pem folder that you downloaded as key value pair when creating the instance
+cd to the path of the folder
+run the command ssh ec2-user@IP(that you have - public IP for our EC2 instance)
+the reason we do ssh ec2-user is because the amazon linux 2 AMI has already a user setup for us with name of ec2-user
+give permission to the pem file chmod 004 filename.pem
+connect to the ec2 instance server => ssh -i filename.pem ec2-user@publicIP

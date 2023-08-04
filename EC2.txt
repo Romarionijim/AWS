@@ -150,7 +150,7 @@ we can run on powershell the same command if windows 10 already has ssh
 when ssh into the ec2 instance - if you wanna run aws commands via aws configure
 DO NOT enter your own credentials such as aws access key and secret key
 instead - use IAM role - attach an IAM role to your ec2 instance that has a permission
-and that way the IAM role provides credentials to the ec2 and by that credentials you can run commands whitout you providing your access key
+and that way the IAM role provides credentials to the ec2 and by that credentials you can run commands whithout you providing your access key
 
 ec2 instances purchasing options:
 1. on demand instances - short workload, predictable pricing, pay by the second

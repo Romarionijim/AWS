@@ -1,0 +1,106 @@
+different EC2 instance storage options:
+
+EBS volumes:
+elastic block store => is a network drive you can attach to your instance while they run (attached through the network)
+it allows your instances to persist data even their termination - similar to docker volumes
+we can recreate and an instance and mount the same EBS volume from before and get back the data
+the EBS is at the CCP level which means they can be mounted to one instance at a time meaning you cannot attach ebs to more than one instance
+except for io1 and io2 volume types which are called EBS multi-attach feature
+the EBS volume is bound to a specific availability zone - meaning if you create an EBS volume on AZ eu-east-1a - you cannot attach it
+to attach it to eu-east-1b fo example
+to move a volume you first need to snapshot it (backup) - create a backup of the EBS
+free tier: 30GB of free EBS of type general purpose (SSD) or magnetic per month
+
+it is possible to attach more than one EBS volume to one instance
+
+EBS Snapshots:
+* not necessary to detach volume to do snapshot but recommended
+can copy snapshots and restore across AZ or region
+
+EBS snapshot archive:
+move a snapshot to an archive tier that is 75% cheaper
+EBS snapshot => EBS snapshot archive
+takes within 24 to 72 hours for restoring the archive
+
+Recycle bin for EBS snapshots
+setup rules to retain deleted snapshots so you can recover them after accidental deletion
+specify retention from 1 day to 1 year
+
+AMI overview => Amazon machine image
+AMI are customization of an EC2 instance => you can add your own software, configuration, OS monitoring and more..
+faster boot / configuration time because all your software is pre-packaged
+AMI are build for a specific region and can be copied across region
+you can launch EC2 instance from:
+1. a public AMI provided by AWS
+2. your own AMI: you make and maintain them yourself
+
+3. launch an EC2 instance from an AWS marketplace AMI: an AMI someone else made and potentially sells
+
+AMI process (from an EC2 instance)
+* start an EC2 instance and customize it
+* stop the instance (for data integrity)
+* Build an AMI - this will also create EBS snapshots ( storage via network volumes for EC2)
+* Launch instances from other AMIs
+* can be run on a schedule (weekly, whenever packages are updated and etc...)
+* free service ( only pay for the underlying resources ) => that means if you create an EC2 instance during this process
+an EC2 image builder will create these EC2 instances, then you will pay for these EC2 instances,
+and when the AMI is created and distributed, your going to pay for the storage of that AMI wherever it has been created
+and whenever it has been distributed
+
+EC2 Image builder:
+* used to automate the creation of VM or container images
+that means with EC2 image builder your gonna be able to automate the creation, maintain, validate and test AMIs for EC2 instances
+
+flow - setup EC2 builder => create builder EC2 instance => create NEW AMI => automatically create a test instance from that AMI (test EC2 instance)
+=> run tests that you define, tests such as is the AMI worming, is it secure and etc.. => AMI distributed ( can be multiple regions )
+
+EC2 instance store:
+EBS volumes are network drives with good but limited performance
+if you need high performance hardware disk, use EC2 instance store (hardware disk attached to your EC2 instance)
+EC2 instance is a VM but it is attached to a real hardware server and some of these servers do have disk space that is attached
+directly with a physical connection onto the server
+
+we use EC2 instance store for:
+better I/O performance (high disk performance), the downside that EC2 instance store lose their storage if they're stopped (ephemeral)
+good for buffer / cache / scratch data / temporary content
+risk of data loss if hardware fails
+if you do decide to use EC2 instance store then backups and replication are you responsibility
+
+EFS: another storage type that you can attach to your EC2 instance
+elastic file system => and this is a network file system or NFS
+the idea and benefits of EFS that it can be mounted to hundreds of EC2 instances at a time
+so before we had an EBS volume attached to one EC2 instance at a time, but with an EFS drive, you can mount it onto hundreds of EC2 instances
+so that makes it a shared network file system
+NFS works only with linux EC2 instances in multi-AZ
+NFS is highly available, scalable , pretty expensive , its about 3X the price of a gp2 EBS volume
+but you pay per use and you dont plan for capacity
+
+EFS infrequent Access (EFS-IA):
+storage class that is cost optimized for files not accessed everyday
+up to 92% lower cost compared to EFS standard
+if you enable EFS-IA, EFS will automatically move your files to EFS-IA based on the last time they were accessed
+enable EFA-IA with a life-cycle policy
+the idea is that this is cost saving optimization since it will move files that are not accessed by what was set in the
+lifecycle policy to another storage class to save costs,
+so the next time you use these files, they are going to be put back into the EFS standard
+from an application prespective there are no drawbacks, the application does not need to know where the file is if it's an EFS standard
+or if it's EFS-IA, it will access all these files the same way, it's just behind the scenes EFS will do some cost optimizations.
+
+shared responsibility model for EC2 storage:
+
+AWS:
+infrastructure
+replication for data for EBS volumes and EFS drives
+replacing faulty hardwares ( any time an EBS drive would fail )
+ensuring that their employees cannot access your data
+
+customer:
+setting up backup/snapshot procedures
+setting up data encryption to ensure that people cannot have access to your data
+responsibility of any data on the drives - anything you write to that disk is your own responsibility
+understanding the risk of using EC2 instance store - which is that you can lose the drive if somehow there is a faulty hardware
+or that if you stop or terminate the EC2 instance that ahs an instance store - then the data will be lost
+so because of this it is your responsibility to back it up in the first place
+
+
+

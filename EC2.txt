@@ -155,11 +155,11 @@ and that way the IAM role provides credentials to the ec2 and by that credential
 ec2 instances purchasing options:
 1. on demand instances - short workload, predictable pricing, pay by the second
 2. reserved instances
-* reserved instances for example 1 && 3 years - long work loads for example if you wanna runa  DB for a long time then reserved instance is great
+* reserved instances for example 1 && 3 years - long work loads for example if you wanna run a DB for a long time then reserved instance is great
 * convertible reserved instances - flexible instance type for example, you want to change the instance type overtime
 3. savings plan - 1 && 3 year commitment to an amount of usage, long workloads - instead of committing to a specific instance type
 you commit to a specific amount of usage in dollars for long workloads
-4. spot instances - short workloads, cheap, you can lose these instances at any time (less reliable)
+4. spot instances - short workloads, cheap, you can lose these instances at any time (less reliable) like bids - who has the higher bids takes it example
 5. dedicated hosts - book an entire physical server, control instance placement - meaning no other customers will share your hardware
 6. capacity reservations - reserve capacity in a specific AZ for a specific duration
 
@@ -227,7 +227,7 @@ remember that dedicated instances mean that you have your own instance on your o
 and dedicated hosts means you get access to the physical server itself and it gives you visibility into the lower level hardware.
 
 capacity reservations:
-rserve on demand instances capacity in a specific Availability Zone for any duration
+reserve on demand instances capacity in a specific Availability Zone for any duration
 this means you can reserve on demand instances in a specific AZ for any duration
 you have access to ec2 capacity when you need it
 no time commitment, create cancel anytime no billing discounts - the only purpose is to reserve capacity

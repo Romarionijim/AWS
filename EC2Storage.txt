@@ -3,7 +3,7 @@ different EC2 instance storage options:
 EBS volumes:
 elastic block store => is a network drive you can attach to your instance while they run (attached through the network)
 it allows your instances to persist data even their termination - similar to docker volumes
-we can recreate and an instance and mount the same EBS volume from before and get back the data
+we can recreate an instance and mount the same EBS volume from before and get back the data
 the EBS is at the CCP level which means they can be mounted to one instance at a time meaning you cannot attach ebs to more than one instance
 except for io1 and io2 volume types which are called EBS multi-attach feature
 the EBS volume is bound to a specific availability zone - meaning if you create an EBS volume on AZ eu-east-1a - you cannot attach it
@@ -52,10 +52,10 @@ EC2 Image builder:
 that means with EC2 image builder your gonna be able to automate the creation, maintain, validate and test AMIs for EC2 instances
 
 flow - setup EC2 builder => create builder EC2 instance => create NEW AMI => automatically create a test instance from that AMI (test EC2 instance)
-=> run tests that you define, tests such as is the AMI worming, is it secure and etc.. => AMI distributed ( can be multiple regions )
+=> run tests that you define, tests such as is the AMI working, is it secure and etc.. => AMI distributed ( can be multiple regions )
 
 EC2 instance store:
-EBS volumes are network drives with good but limited performance
+EBS volumes are network drives that are good but with limited performance
 if you need high performance hardware disk, use EC2 instance store (hardware disk attached to your EC2 instance)
 EC2 instance is a VM but it is attached to a real hardware server and some of these servers do have disk space that is attached
 directly with a physical connection onto the server
@@ -99,8 +99,35 @@ setting up backup/snapshot procedures
 setting up data encryption to ensure that people cannot have access to your data
 responsibility of any data on the drives - anything you write to that disk is your own responsibility
 understanding the risk of using EC2 instance store - which is that you can lose the drive if somehow there is a faulty hardware
-or that if you stop or terminate the EC2 instance that ahs an instance store - then the data will be lost
+or that if you stop or terminate the EC2 instance that has an instance store - then the data will be lost
 so because of this it is your responsibility to back it up in the first place
+
+Amazon FSX:
+is a managed service to launch third party high-performance file systems on AWS
+full managed service
+so in case you dont wanna use EFS or S3 then you can use FSX to manage these file systems
+
+FSx for lustre (linux + cluster)
+FSx for windows file server
+
+FSx for windows file server:
+a fully managed highly reliable and scalable windows native shared file system
+built on windows file server
+meant for windows instances
+support SMB protocol, it's able to access the windows file server
+Amazon FSx is the way to deploy this windows file server
+it is integrated with Microsoft active directory
+can be accessed from AWS or your on-premise infrastructure
+
+FSx for lustre: HPC on linux file system
+a fully managed high performance scalable file storage for high performance computing (HPC)
+the name lustre is derived from linux and cluster
+HPC such as machine learning, analytics, video processing, financial modeling
+scales up to 100s GB's, millions of IOPS, sub-ms latencies.
+
+
+
+
 
 
 

@@ -1,0 +1,127 @@
+Elastic load balancing && Auto scaling groups ELB + ASG
+
+scalability and high availability:
+scalability means that an application / system can handle greater loads by adapting
+there are two kind of scalability:
+1. vertical scalability
+2. horizontal scalability = elasticity
+
+scalability is linked but different to high availability
+
+vertical scalability:
+increase the size of an instance
+for example if my application runs on a r2.micro and to do a vertical scalability for that application =>
+scaling that application vertically means running it on a t2.large
+verticals scalability is very common for non distributed systems such as a database
+there is usually a limit to how much you can vertically scale (hardware limit)
+
+horizontal scalability:
+instead of increasing the size of an EC2 instance, you increase the number of instances / systems for you application
+you need to have a distributed
+very common for web application / modern application
+
+it's easy to horizontally scale => AWS EC2 instance
+
+high availability:
+it goes hand in hand with horizontal scalability
+high availability means that you are running your application and system in at least two availability zones in AWS
+if one instance at one AZ is down then we have the other instance in the other AZ
+
+to summarize:
+vertical scaling: increase instance size => scale up / down
+from t2.nano - 0.5G or RAM, 1 vCPU => to u.1 t2b l.metal - 12.3TB of RAM, 448 vCPU
+
+horizontal scaling => increase number of instances => scale out or decrease number of instances => scale in
+* Auto scaling group
+* Load balancer
+
+high availability => run the instances of the same application in at least 2 AZ or across multiple AZs
+* leveraged by auto scaling group multi AZ
+* Load balancer multi AZ
+
+scalability vs elasticity (vs agility)
+scalability => ability to accommodate a larger load by making the hardware stronger (scale up) or by adding nodes (scale out)
+elasticity => once a system is scalable, elasticity means that there will be some "auto scaling" so that the system can scale based on the load
+that is it receiving
+this is cloud friendly as it is pay per use, match demand, optimize costs
+
+agility => not related to scalability - new IT resources are only a click away, which means that you can reduce the time to make those
+resources available to your developers  from weeks to just minutes
+
+ELB overview:
+what is a load balancer:
+load balancers are servers that forward internet traffic to multiple servers (EC2 instances) downstream
+the load balancer is managed by AWS
+and behind these load balancers we will have multiple EC2 instances
+it will balance the load between multiple EC2 instances that our users are using and that will allow us to scale
+better our backend
+
+why use a load balancer?
+spread load across multiple downstream instances
+expose a single point of access (DNS) to your application
+handle failures of downstream instances
+do regular health-checks to your instances
+provide SSL termination (HTTPS) fro your websites
+use load balancers across AZ
+an ELB is a managed load balancer
+AWS guarantees that it will be working
+AWS will take care of upgrades, maintenance, high availability of that elastic load balancer
+AWS provides only a few configuration knobs
+
+it costs less to setup your own load balancer but it will be a lot more effort on your end like maintenance, integrations and etc..
+4 kind of load balancers offered by AWS:
+* Application load balancer (HTTP/HTTPS only traffic) - called layer 7
+* network load balancer => ultra high performance, allows for TCP - layer 4
+* gateway load balancer - layer 3
+* classic load balancer - retired in 2023 layer 4 + 7 replaced by ALB and NLB
+
+ALB (application load balancer):
+HTTP/HTTPS/gRPC protocols (layer 7)
+HTTP Routing features
+static DNS (url)
+
+NLB (network load balancer):
+TCP / UDP protocols (layer 4)
+high performance: millions of request per seconds
+static IP through elastic IP
+
+gateway load balancer:
+using the GENEVE protocol on IP packets (layer 3)
+GWLB
+route traffic to firewalls that you manage on EC2 instances
+intrusion detection
+it balances the traffic via 3rd party security virtual appliances
+
+Auto scaling group:
+so now we have an application that can be load balanced through a load balancer
+but how do we create these servers automatically in the ? we use ASG
+why? in real life, the load on your websites and application can change overtimeback end
+for example a shopping website, most likely users will shop at day and not at night so it's most likely that at day
+we have the most load and less load during the night
+so in the cloud we can create and get rid of servers very quickly
+and so the goal of an auto scaling group is to scale out (that means add ec2 instances to match an increased load)
+or scale in (that means remove EC2 instances to match a decreased load)
+with this we can ensure that we have a minimum and a maximum number of machines running at any point of time
+and once the auto scaling group does create or remove EC2 instances we can make sure that these instances will be registered
+or deregistered into our load balancer so to sum up it automatically register new instances to a load balancer
+it also replace unhealthy instances because of application bug or downtime or something is wrong with the servers
+so the ASG can detect it and terminate it and replace it by a new healthy instances
+cost savings: only run at an optimal capacity ( principle of the cloud )
+
+ASG - scaling strategies:
+* manual scaling => update the size of an ASG manually
+* dynamic scaling => respond to changing demand automatically
+    *simple / step scaling
+    meaning when a cloudwatch alarm is triggered ( example CPU > 70% ) then add 2 units
+    or when a cloudwatch alarm is triggered ( example CPU < 30% ) then remove 1 unit
+    *target tracking scaling => a very easy way of defining a scaling policy
+        example: I want the average ASG CPU to stay at around 40%=> then the ASG will scale automatically
+        to make sure you stay around that target of 40%
+    *scheduled scaling
+        anticipate a scaling based on known usage patterns
+        example: increase the minimum capacity to 10 at 5pm on fridays (increase based on what I schedule)
+    *Predictive scaling:
+        uses machine learning to predict future traffic ahead of time
+        an algorithm that will look at the past traffic patterns and
+        it will forecast what will happen to traffic based in the past patterns
+        it is useful and very helpful when your load has predictable time based patterns

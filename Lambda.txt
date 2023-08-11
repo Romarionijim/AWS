@@ -1,0 +1,67 @@
+AWS Lambda:
+if we use EC2 instance which are virtual servers in the cloud - but it is limited by RAM and CPU we give it.
+continuously running - although sometimes we do not even use it.
+scaling means => intervention to add / remove servers, we can use autoscaling group and etc.
+
+with Lambda - this is a new way to think about it
+in this case we don't have servers - we just have VIRTUAL FUNCTIONS - no servers to manage.
+these functions are limited by time - short executions.
+run on demand - meaning whenever we run a function it wil lbe there to run
+and when we dont need a function t will not be run and we will not be built for it
+and in case we need scaling - it is Automated! => scaling is automated.
+
+Benefits:
+pricing super easy - pay per request and per compute time
+free tier of 1000000 AWS Lambda requests every month and 400000 GB seconds of compute time.
+integrated with the whole AWS suite of services
+event driven - functions get invoked by AWS when needed or based on an event - so that makes Lambda a reactive type of service
+integrated with many programming languages
+easy monitoring through AWS CloudWatch
+easy to get resources per functions (up to 10GB of RAM)
+increasing the RAM will also improve CPU and network.
+
+AWS Lambda langauge support:
+nodejs
+python
+C#
+Java
+GOlang
+powershell
+ruby
+custom runtime API
+Lambda container image  - this allows you to run actual docker containers =>
+the container image must implement the Lambda Runtime API
+which is not the case for every docker image => so they are very very specific Docker images
+
+when it comes to running Docker containers on AWS =>
+ECS / Fargate is preffered for running arbitrary Docker images
+
+example: Serverless CRON Jon
+so Cron allows you to define a schedule (every hour, every day, every monday..) and based on that schedule to run a script
+and by default a CRON job is run on a Linux AMI but we are serverless so we cannot provision an EC2 instance
+so instead we'll be using something called CloudWatch Events or EventBridge
+and this service - will be triggering every hour our Lambda function to perform a task
+cloudwatch events are serverless
+so effectivley we are launching a script every hour through a Lambda function
+
+pricing:
+you pay per calls:
+    first 1000000 are free.
+    $0.20 per 1 million requests thereafter $0.0000002 per request
+pay per duration in increment of 1 millisecond
+    400000 GB seconds of compute per month is free
+    === 400000 seconds if function is 1GB of RAM
+    or === 3200000 seconds if function is 128 MB RAM
+    after that you are going to pay $1.00 for 600000 GB seconds
+
+Bottom-line:
+very cheap to run AWS Lambda and it;s very popular
+for the exam you need to remember that lambda pricing is based on calls and durations.
+
+
+
+
+
+
+
+

@@ -282,6 +282,17 @@ summary of storage classes:
 
 s3 standard: regular storage high durability and availability with immediete data retrieval milliseconds
 intelligent tiering: moves data between classes ( faster or slower) storage based on usage, immediete retreival millisecond in
+
+S3 Standard:
+
+    Frequent Access Tier: Immediate (millisecond latency)
+    Infrequent Access Tier: A few milliseconds to seconds
+
+S3 One Zone-IA (Infrequent Access):
+
+    Immediate: A few milliseconds to seconds
+    Delayed: A few hours (usually within minutes to hours)
+
 frequent retrieval
 and minutes to hours  in infrequent retrieval
 one zone AI: for less frequent accessed data, lower redunduncy usally slower than s3 and intelligent tiering

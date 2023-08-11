@@ -52,7 +52,7 @@ S3 bucket policies:
 
 use an S3 bucket policy to:
     *grant public access to the bucket
-    *force objects ti be encrypted at upload
+    *force objects to be encrypted at upload
     *grant access to another account (cross account)
 
 bucket settings for block public access:
@@ -161,13 +161,13 @@ data encryption at rest in transit - your responsibility to encrypt your data wh
 AWS snow family:
 high secure, portable devices to collect and process data at the edge or to migrate data into and out of AWS
 data migration: 3 different devices => snowcone, snowball edge, snowmobile
-edge computing: snowcone snowball  edge
+edge computing: snowcone and snowball edge
 
 the data shipping occurs physical via the AWS snowball device => order the device and receive it via post, transfer the data onto the device
 ship it back to AWS => aws imports the data to their infrastructure and exported to s3 bucket
 
 snowball edge for data transfers:
-physical data transport solution van move TB's and PB's in or out of AWS
+physical data transport solution can move TB's and PB's in or out of AWS
 alternative for moving data over the network
 pay per data transfer job
 provide block storage and Amazon S3-compatible object storage
@@ -187,7 +187,7 @@ device used for edge computing, storage and data transfer
 two flavors that comes with it:
 snowcone - 8 TB of HDD storage
 snowcone SSD - 14 TB od SSD storage
-use snowcone where snowball does not fir ( space constrained environment )
+use snowcone where snowball does not fit ( space constrained environment )
 must provide your own battery / cables
 
 in order to send data back to aws  you have two options:
@@ -208,3 +208,94 @@ how do we use a snow family device?
 4. ship back the device when your done (goes to the right AWS facility)
 5. the data will be loaded into an S3 bucket
 6. the snowball will be completely wiped to the highest security measures
+
+what is edge computing:
+edge computing is when you process data while it;s being created on an edge location
+edge location is anything that does not have an internet or that is far away from the cloud
+these locations may have:
+limited / no internet access such is in a ship, mining underground and etc...
+limited / no access to computing power
+but you may still want to process data n these locations and for this we need edge computing
+so we setup a snowball edge / snowcone device to do edge computing
+use cases of edge computing:
+* preprocess data
+* machine learning at the edge
+* transcoding media streams
+
+eventually (if need be) we can ship back the device to AWS (for transferring data for example)
+
+
+all snow family edge computing can run EC2 instances and AWS lambda functions ( using AWS IoT Greengrass )
+long terms deployment options: 1 and 3 years discounted price
+
+AWS OpsHub:
+to use a snow family devices, you needed a CLI
+today, you can use AWS OpsHub a software you install on your computer to manage your snow family device
+gives us a graphic UI to configure and connect to a snow family device
+unlocking and configuring single or clustered devices
+transferring files
+launching and managing instances running on snow family devices
+
+Hybrid cloud for storage:
+AWS is pushing for "Hybrid cloud" => meaning part of the infrastructure is on premises and part is on the cloud
+S3 is a proprietary storage technology, so how do you expose the S3 data on premise?
+to expose S3 data on premise we have to use something called a storage gateway
+AWS Storage gateway:
+
+storage options on AWS:
+1. Block => EBS or EC2 instance store
+2. File => file storage => network file system = Amazon EFS
+3. Object => Amazon S3 or Glacier
+
+the storage gateway is going to be bridging between your on-premises data and cloud data in AWS
+it provides a Hybrid storage service to allow on premises to seamlessly use the AWS cloud to extend
+the storage capability, this can be used for disaster recovery, backup & restore tiered storage
+
+types of storage gateway:
+* file gateway
+* volume gateway
+* tape gateway
+
+under the hood / behind the scenes:
+the storage gateway will be using Amazon EBS, Amazon S3 and glacier
+
+so to sum up - the storage gateway is to bridge your file systems and your storage on premises into the cloud to leverage
+best of both worlds. (Hybrid)
+
+snowball family summary:
+
+snowball: device that moves large amounts of data from your place to AWS
+comes in two sized , 50TB or 80 Tb meaning it cas store 50TB or 80TB
+
+snowball edge: like snowball but does data processing while transporting/moving the data
+comes in two sizes: 42TB of HDD storage with compute capability or 80 TB storage optimized
+
+snowmobile: truck is designed for massive data transfers - can transfer EB of data => 1 EB = 1000 PB = 1000000 TB
+it has 100PB of capacity - migrate up to 100PB
+
+snowcone: small portalbe device that provides edge computing to a places that has minimal or no internet access,
+provides edge computing and data transfer in remote or challenging environments, it can handle up to 8 TB of data
+
+snowcone SSD: can handle up to 14TB of storage
+
+summary of storage classes:
+
+s3 standard: regular storage high durability and availability with immediete data retrieval milliseconds
+intelligent tiering: moves data between classes ( faster or slower) storage based on usage, immediete retreival millisecond in
+frequent retrieval
+and minutes to hours  in infrequent retrieval
+one zone AI: for less frequent accessed data, lower redunduncy usally slower than s3 and intelligent tiering
+
+s3 glacier - for archiving data you rarely need: has differnet storage options:
+expedited: 1 min to 5 mins
+standard => 3 to 5 hours
+bulk => 5 to 12 hours
+
+deep dive: cheapest option for long term archive - slower to retrieve
+12 to 48 hours
+
+
+
+
+
+

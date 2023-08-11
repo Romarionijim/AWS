@@ -1,0 +1,17 @@
+what is serverless?
+is a new paradigm in which the developers dont have to manage servers anymore.
+they just deploy the code
+or they deploy functions
+initially => serverless === FaaS Function as a Service
+that means that you just deploy your code and each function will run independently by the lambda service
+serverless was pioneered by AWS Lambda but now also includes anything that's managed: databases, messaging, storage and etc..
+(dosen't include servers managed by the user)
+serverless does not mean there are no servers => it means you just dont manage / provision / see them
+
+serverless services that we've been using in this course:
+Amazon S3 - use it as a storage layer but we did not manage any servers at all
+DynamoDB - we just wen ahead and created a table but we did not provision a server for that table
+Fargate - run docker containers => we just send the docker containers and Fargate will automatically
+find a way for it to be run
+Lambda - the pioneer of serverless services which allows you to run functions in the cloud
+

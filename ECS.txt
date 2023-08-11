@@ -1,0 +1,25 @@
+ECS:
+Elastic Container Service:
+this is used to launch Docker containers on AWS
+for ECS => you must maintain and provision the infrastructure (the EC2 instances)
+so you need to create EC2 instances in advance
+AWS takes care of starting/stopping containers
+has integrations with the application load balancer
+the ec2 instances will be running different containers by the ECS service
+the ECS service => anytime is has a new docker container - it will be smart enough to find on which EC2 instance
+to place that docker container
+for the exam => run docker container on AWS => ECS.
+
+Fargate:
+is also used to launch docker containers on AWS but with Fargate we don;t need to provision any infrastructure
+(no ec2 instances to manage ) which is simpler.
+so we do not need to create any ec2 instances and manage them
+it is a serverless offering - don't manage any servers
+AWS will just run the containers that we need, based on the CPU/RAM we need for each container.
+
+ECR:
+for storing these docker images so that it can be run on AWS - you need to use a container registry =>
+Elastic Container Registry
+it is a private docker registry on AWS
+this is where you store your docker images so they can be run by ECS or Fargate
+

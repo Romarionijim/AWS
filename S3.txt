@@ -186,7 +186,7 @@ it is light => 2.1KG
 device used for edge computing, storage and data transfer
 two flavors that comes with it:
 snowcone - 8 TB of HDD storage
-snowcone SSD - 14 TB od SSD storage
+snowcone SSD - 14 TB of SSD storage
 use snowcone where snowball does not fit ( space constrained environment )
 must provide your own battery / cables
 

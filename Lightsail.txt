@@ -1,0 +1,14 @@
+Amazon Lightsail
+
+a standalone service
+you can get virtual servers, storage, databases and networking
+it gives you low and predictable pricing
+it is much simpler alternative to using EC2, RDS, ELB, EBS, Route 53...
+great for people with LITTLE CLOUD EXPERIENCE
+can setup notifications and monitoring of your lightsail resources
+use cases: deploy a simple web application ( has templates for LAMP, Nginx, MEAN, nodejs .. )
+has high availability but no auto scaling, limited AWS integrations
+
+for the exam => someone with no cloud experience and need to get started quickly with low
+ and predictable pricing without configuring things much => think lightsail otherwise lightsail will almost
+ always be the wrong answer

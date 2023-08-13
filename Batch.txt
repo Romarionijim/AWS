@@ -2,7 +2,7 @@ AWS Batch
 batch is a fully managed batch processing at ANY SCALE
 you can effciently run 100K of thousands of computing batch jobs on AWS easily
 
-batch job => is a job that ahs a start and an end => starts at 1 am and finished at 3 am for example
+batch job => is a job that has a start and an end => starts at 1 am and finished at 3 am for example
 batch will dynamically launch  EC2 instances or spot instances
 AWS batch provisions the right amount of compute / memory
 you submit and schedule batch jobs and AWS batch does the rest
@@ -18,7 +18,7 @@ lambda:
  serverless
 
 Batch:
-    me limit - relies on EC2 instances
+    no time limit - relies on EC2 instances
     any runtime that you want as long it is packaged as a docker image
     for storage you rely on EBS volume / instance store for disk space ( rely on the storage that comes with an EC2 instance )
     it is not serverless - it is a managed service but relies on actual EC2 instances being created

@@ -44,6 +44,10 @@ and this service - will be triggering every hour our Lambda function to perform 
 cloudwatch events are serverless
 so effectivley we are launching a script every hour through a Lambda function
 
+use cases:
+    create thumbnails for images uploaded into S3
+    run a serverless cron job
+
 pricing:
 you pay per calls:
     first 1000000 are free.
@@ -53,6 +57,9 @@ pay per duration in increment of 1 millisecond
     === 400000 seconds if function is 1GB of RAM
     or === 3200000 seconds if function is 128 MB RAM
     after that you are going to pay $1.00 for 600000 GB seconds
+
+    *billing by the time run times by the RAM provisioned
+    *bulling by the number of invocations
 
 Bottom-line:
 very cheap to run AWS Lambda and it;s very popular

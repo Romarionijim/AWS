@@ -6,8 +6,8 @@ scaling means => intervention to add / remove servers, we can use autoscaling gr
 with Lambda - this is a new way to think about it
 in this case we don't have servers - we just have VIRTUAL FUNCTIONS - no servers to manage.
 these functions are limited by time - short executions.
-run on demand - meaning whenever we run a function it wil lbe there to run
-and when we dont need a function t will not be run and we will not be built for it
+run on demand - meaning whenever we run a function it will be there to run
+and when we dont need a function it will not be run and we will not be built for it
 and in case we need scaling - it is Automated! => scaling is automated.
 
 Benefits:
@@ -36,7 +36,7 @@ which is not the case for every docker image => so they are very very specific D
 when it comes to running Docker containers on AWS =>
 ECS / Fargate is preffered for running arbitrary Docker images
 
-example: Serverless CRON Jon
+example: Serverless CRON Job
 so Cron allows you to define a schedule (every hour, every day, every monday..) and based on that schedule to run a script
 and by default a CRON job is run on a Linux AMI but we are serverless so we cannot provision an EC2 instance
 so instead we'll be using something called CloudWatch Events or EventBridge

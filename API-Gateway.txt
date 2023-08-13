@@ -1,0 +1,15 @@
+Amazon API Gateway
+
+example: building a serverless HTTP API
+Lambda doing CRUD with DynamoDB which are both serverless technologies
+if I want another client to connect to the lambda function
+lambda function is not exposed as an API right away
+in this case we need to expose through an API gateway
+which is going to provide the client with the rest HTTP API to connect directly to your website
+the client will talk to the API gateway via REST API - the API gateway will proxy the requests to your lambda function
+which will execute the transformations on your data
+it is a fully managed service for to developers to easily create, publish, maintain, monitor and secure APIs in the cloud
+it is serverless and scalable
+supports RESTFUL APIs and websockets APIs
+supports security, user authentication, api throttling, API keys, monitoring
+for the exam => build a serverless API => THINK api GATEWAY AND lAMBDA

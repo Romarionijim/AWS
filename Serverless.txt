@@ -10,7 +10,7 @@ serverless does not mean there are no servers => it means you just dont manage /
 
 serverless services that we've been using in this course:
 Amazon S3 - use it as a storage layer but we did not manage any servers at all
-DynamoDB - we just wen ahead and created a table but we did not provision a server for that table
+DynamoDB - we just went ahead and created a table but we did not provision a server for that table
 Fargate - run docker containers => we just send the docker containers and Fargate will automatically
 find a way for it to be run
 Lambda - the pioneer of serverless services which allows you to run functions in the cloud

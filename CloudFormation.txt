@@ -1,0 +1,34 @@
+Deploying and managing infrastructure at scale section
+
+what is cloudformation:
+declarative way of outlining your AWS infrastructure, for any resources like terraform
+for example with cloudformation template you can say:
+    I want a security group
+    I want two EC2 instances using this security group
+    I want S3 bucket
+    I want load balancer for all these
+and cloud formation will create these by the the declared order
+
+Benefits:
+it is IaaC - no resources are manually create, which is excellent for control
+any time you make changes to the infrastructure are reviewed through code (CR)
+
+costs:
+each resources within the stack is tagged with an identifier so you can easily see how much a stack costs you
+you can estimate the costs of your resources using the cloudformation template
+savings strategy: in X environment you could automate deletion of templates at 5PM and recreated at 8 AM safely
+
+productivity:
+ability to destroy and re-create an infrastructure on the cloud on the fly
+automated generation of diagram for our templates
+declarative programming ( no need to figure out ordering and orchestration )
+
+dont re invent the wheel
+leverage existing templates on the web
+leverage documentation
+
+supports almost all AWS resources
+if it isnt supported you can use "custom resources" for resources that are not supported
+
+for the exam => cloudformation is going to be used when we have IaaC when we need to repeat an architicture
+in different environments, different regions or even different AWS accounts

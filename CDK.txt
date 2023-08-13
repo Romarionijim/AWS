@@ -1,0 +1,11 @@
+AWS cloud development kit CDK
+
+define your cloud infrastructure using a familiar language: like Pulumi
+    javascript/typescript, python, java, and .net
+    when you write the code in your preferred programming language - the code is "compiled" into a cloudformation
+    template (JSON,YML)
+you can therefore deploy infrastructure and application runtime code together
+    great for Lambda functions
+    great for docker containers in ECS / EKS
+
+    programming language => CDK application => cloudformation template => cloudformation

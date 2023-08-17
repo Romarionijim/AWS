@@ -1,0 +1,40 @@
+AWS elastic BeanStalk
+
+Elastic beanstalk
+is a developer centric view of deploying an application on AWS
+it uses all components => EC2, ASG, ELB, RDS, and etc...
+but it is all in one view - we still have full control over the configuration
+but it is all within BeanStalk
+beanstalk => platform as a service PaaS
+beanstalk is free but you pay for the underlying instances
+
+it is a managed service
+all the EC2 instance / OS configuration is handled by beanstalk
+deployment strategy is configurable but performed by elastic beanstalk
+capacity provisioning
+load balancing and auto-scaling
+application health monitoring and responsiveness
+
+my responsibility as a developer:
+just the application code
+
+three architicture models:
+single instance deployment => good for dev
+LB + ASG: great for production or pre-production web application
+ASG only => for non web apps in production (workers etc...)
+
+beanstalk supports many platforms:
+go, java
+.net
+nodejs
+php
+ruby
+packer
+docker
+multi docker
+preconfigured docker
+custom platform
+
+health monitoring => beanstalk has full monitoring suite within the service itself and there is going to be health
+agents on each EC2 instance within beanstalk that is going to push metrics to cloudwatch
+and within beanstalk you can view these metrics 

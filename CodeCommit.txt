@@ -1,0 +1,11 @@
+before pushing the application code to servers, it needs to be stored somewhere
+developers usually store code in a repository, using git
+aws has a competing product that is codecommit
+code commit - AWS service that allows you to store code => source control service that hosts git based repos
+
+the code changes are automatically versioned
+
+benefits:
+*Fully managed
+*scalable and highly available
+*private, secured, integrated with all AWS services

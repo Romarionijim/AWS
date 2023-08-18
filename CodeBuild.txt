@@ -1,0 +1,16 @@
+allows you to build your code in the cloud
+
+a code building service in the cloud
+compiles source clode, run tests and produces packages that are ready to be deployed (by codedeploy) unto servers
+so that the application can run
+
+diagram:
+
+codeCommit => codeBuild retreives the code from code commit => ready to deploy artifact
+
+benefits:
+*fully managed, serverless
+*continuously and highly available
+secure
+pay as you go pricing - only pay for the build time
+

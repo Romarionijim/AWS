@@ -1,0 +1,5 @@
+it is a unified UI to easily manage software development activities in one place
+it will give you a dashboard where you can view all code, build, deploy, pipeline , activity and etc..
+it is a quick way to get started to correctly setup codecommit, code pipeline, code build. codeDeploy, elastic beanstalk, EC2 and etc..
+can edit the code in the cloud using AWS cloud9
+

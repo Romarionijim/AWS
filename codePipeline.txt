@@ -1,0 +1,18 @@
+how do we know that codecommit and codebuild are connected?
+
+we can connect them using code pipeline =>
+*orchestrate the different step to have the code automatically pushed to production
+    code => build => test => provision => deploy
+    basis for CI/CD
+
+codepipeline orchestration layer: one way of building a pipeline in AWS
+    codeCommit => codeBuild => codeDeploy => elastic beanstalk environment
+
+
+benefits:
+fully managed, compatible with codeCommit => codeBuild => codeDeploy, elastic beanstalk, cloudformation, GitHub, 3rd party services
+such as GitHub & custom plugins
+
+it gives you fast delivery and rapid updates
+
+Exam => pipeline orchestration in AWS =< CodePipeline

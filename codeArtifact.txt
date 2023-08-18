@@ -1,0 +1,9 @@
+*software packages depend on each other to be built (code dependencies) and new ones are created
+*storing and retrieving these dependencies is called artifact management
+*traditionally you need to setup your own artifact management system
+so AWS came up with cloudArtifact, that si secure, scalable, and cost effective artifact management for software development
+it works with all the common dependency management tools, such as Maven, Gradle, NPM, yarn, twine, pip, nuGet
+these can just talk with codeArtifact to store and retrieve these code dependencies
+
+for the exam => codeArtifact is going to be very helpful if your team needs an artifact management system or a place to store
+their code dependencies

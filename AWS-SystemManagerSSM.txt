@@ -1,0 +1,21 @@
+helps you manage your  ec2 instances and on premises systems at scale
+another hybrid AWS service
+get operational insights about the stat of your infra
+most important features are:
+    patching automation for enhances compliance
+    run commands across an entire fleet of servers
+    store parameter configuration with the SSM parameter store
+
+Works for linux windows macOS and raspberry pi OS
+
+for the exam => anytime you see a way to patch your fleet of EC2 instances or on-premises servers => think of SSM
+and if you want to run a command consistently across all your servers
+
+how does it work?
+you need first to install the ssm agent onto the systems we control
+installed by default on Amazon linux AMI and some ubuntu AMI
+
+if an instance cant be controlled with SSM, it's probably an issue with the SSM agent
+
+thanks to SSM - we can run commands , patch, and configure our servers
+

@@ -1,0 +1,15 @@
+a way to deploy our application automatically
+it does not need to use beanstalk or cloudformation
+it is completely independant
+
+it works with two things:
+it works with EC2 instances
+works with on premises servvers
+
+it helps us upgrade the ec2 and on premises versions from v1 to v2 for example
+
+hybrid service => works with any server but you must provision and configure serversd ahead of time with the CodeDeploy agent
+CodeDeploy agent assists you to to do all these upgrades
+
+exam => this service allows you to upgrade both EC2 instances, applications and your on premises servers applications automatically
+from a single interface

@@ -1,0 +1,8 @@
+this allows you to start a secure shell on your EC2 and on-premises servers withiut having SSH access,
+bastion hosts or SSH keys needed.
+
+we have 3 ways accessing the ec2 instances:
+1 - open the prot 22 and then use SSH keys
+2 - use ec2 instance connect that didnt require SSH
+3 - session manager => make sure you have ec2 instance with Amazon linux 2 and make sure the ec2 instance has an IAM role
+and this IAM role has allowed access from the ec2 instance to systems manager

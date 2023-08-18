@@ -1,0 +1,8 @@
+AWS cloud9:
+
+it is a cloud IDE for writing running and debugging code.
+it is run in the cloud AWS in a web browser - it is a text editor
+classic IDE => intellij, vscode => are downloaded on a PC before being used
+with a cloud IDE - you can use it in your web browser
+you can work on your project from anywhere with an internet connection without setup
+it also allows code collaboration in real-time (pair programming)

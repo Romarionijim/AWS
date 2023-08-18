@@ -1,0 +1,10 @@
+AWS OpsWorks:
+
+chef and puppet help you perform server configuration automatically or repetitive actions
+they work greate with EC2 && On-Premises VM
+AWS OpsWorks = managed Chef && Puppet
+It's an alternative to AWS SSM
+only provision standard AWS resources
+    EC2 instances, databases, LB, EBS volumes...
+
+    for exam => Chef or pupper needed => AWS OpsWorks

@@ -1,7 +1,7 @@
 allows you to build your code in the cloud
 
 a code building service in the cloud
-compiles source clode, run tests and produces packages that are ready to be deployed (by codedeploy) unto servers
+compiles source code, run tests and produces packages that are ready to be deployed (by codedeploy) unto servers
 so that the application can run
 
 diagram:

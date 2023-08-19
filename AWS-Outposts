@@ -1,0 +1,21 @@
+hybrid cloud:
+businesses that keep an on-premises infra alongside a cloud infra
+there are two ways dealing with it systems
+    AWS cloud - console, CLI and AWS API
+    one for their on premises infra
+
+AWS Outposts are "server racks" that offers the same AWS infra services APIs and tools to build your own applications on premises
+just as in the cloud
+
+AWS will setup and manage outposts racks within your on premises infra and you can start leverages AWS services on-premises
+
+you are responsible for the outposts rack physical security
+
+benefits:
+low latency access to on-premises systems
+local data processing
+data residency
+easier migration from on premises to the cloud
+fully managed service
+some services that work on outposts:
+ec2 + ebs + s3 + eks + ecs + rds + emr

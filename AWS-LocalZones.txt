@@ -1,0 +1,4 @@
+Places AWS compute, storage, database, and other selected AWS services closer to the end users to run latency-sensitive
+applications
+the idea is that you will extend your AWS region => extend your VPC to more locations => extension of an AWS Region
+compatible with EC2, RDS, EC2, EBS, elasticashe, direct connect...

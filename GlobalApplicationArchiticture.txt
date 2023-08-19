@@ -1,0 +1,14 @@
+multi region => active passive
+it means we have two regions => each region has one or multiple AZ and in one region our EC2 instances are going to be active
+or our application is going to be active => that means that our users, whenever they are in the world can do reads and writes to
+our ec2 instance in the active region
+and the other EC2 instance is passive - that means there is data replication between the active region and the passive region
+and possibly the users can do reads from the passive region but they cannot do writes to the passive region
+
+so it has global reads latency
+but not global write latency since it has to go through the central region
+it is increased difficulty since we have multiple regions
+
+and we have active-active
+where each EC2 instance is able to take writes and reads and there is replication still happening
+

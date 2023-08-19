@@ -1,0 +1,12 @@
+Wavelenght zones are infra deployments emdedded withing the telecomunications providers data centers
+at the edge of the 5G network
+
+exam => whenever you see the word 5G => wavelength
+
+brings AWS services to the edge of the 5G networks
+such as EC2 EBS VPC
+ULTRA LOW latency applications through 5G networks
+traffic dosent leave the communication service provider's CSP network
+high bandwidth and secure connection to the parent AWS region
+no additional charges or service agreements
+use cases: smart cities, ML-assisted diagnostics, connected vehicles, interactive live video streams, AR/VR, real-time gaming

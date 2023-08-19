@@ -38,3 +38,10 @@ failover routing policy
     and in case the priumary instance fails then the route 53 will redirect us to the failover instance to help with
     disaster recovery
     summary - to help with disaster recovery
+
+
+how it works in high level to assign a DNS to an ec2:
+you create an ec2 instance => copy the ec2 instance IP => go to route 53 => order a domain ($12 a year, $0.5 a month) =>
+create a record => choose record A (IPV4) => paste the IP of the EC2 as the value => choose routing policy (latency for example)
+choose region (based on the EC2)
+

@@ -1,0 +1,14 @@
+Amazon Route 53
+it helps us to deploy a global application.
+it is a managed DNS (domain name system)
+DNS => it is like a phone book, when you go into a web site and type it's name it searches for that web's ip address
+and renders the page based on that IP address, but it returns this DNS name to the client that it is already typed in the URL
+so it is a collection of rules and records which helps clients understand how to reach a server through URLs
+
+most common records in AWS
+    www.google.com => 12.34.56.78 === A record (IPV4)
+    www.goog.com => 200 1:0db8:85a3:000:000:82a2e:0371:7334 === AAAA IPV4 (quadruple A record)
+    search.google.com =? www.google.com -> CNAME: hostname to hostname
+    example.com => AWS resource === Alias (example: ELB, Cloudfront, S3, RDS, etc...)
+
+for the exam => Route 53 is a managed DNS

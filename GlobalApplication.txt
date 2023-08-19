@@ -1,0 +1,27 @@
+a global application is an application deployed in multiple geographies
+on AWS - this could be regions and or edge locations
+
+decreased latency
+    latency is the time it takes for a network packet to reach a server
+    it takes time for a packer from asia to reach the us
+    deploy your application closer to your users to decrease latency - better experience
+Disaster recovery
+    if an AWS region goes down
+    you can fail over to another region
+    a DR plan is important
+
+attack protection (cyber) distributed global infra is harder to attack all these locations at once
+so your more protected
+
+*global DNS => Route 53 => it is going to help us route the users to the closest deployment with least latency
+it is greate for disaster recovery stategies
+
+*global content delivery network (CDN): cloudfront
+    replicate part of your application to AWS edge locations - decrease latency
+    cache  common requests - improved user experience and decreased latency
+
+S3 transfer acceleration
+    accelerate global upload and download into Amazon s3
+
+AWS Global accelerator:
+    improve global application availability and performance using the AWS global network

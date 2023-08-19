@@ -12,3 +12,26 @@ most common records in AWS
     example.com => AWS resource === Alias (example: ELB, Cloudfront, S3, RDS, etc...)
 
 for the exam => Route 53 is a managed DNS
+
+Route 53 routing policies for the exam:
+
+simple routing policy
+    no health checks
+
+weighted routing policy:
+  allows us to distribute traffic across multiple EC2 instances
+  assign weights for our EC2 instances and then our DNS will make sure that our clients will have
+  the percentage (traffic) that was set on each ec2 => it is some kind of load balancing
+  we can use health checks
+
+latency routing policy:
+    will look at where the user is located - and if they are located close to US ec2 instance
+    then they will be redirected to talk to that server
+    and this is based on latency
+    in this case route 53 will be used to minimize the latency between the users
+    and the servers by making the users connect to the server that is the closest to them
+
+failover routing policy
+    disaster recovery - in this case our DNS system will do a health check on the primary EC2 instance
+    and in case the priumary instance fails then the route 53 will redirect us to the failover instance to help with
+    disaster recovery

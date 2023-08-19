@@ -1,0 +1,69 @@
+content delivery network (CDN)
+
+exam => anytime you see CDN => think cloudFront
+improves read performance, content is cached at the edge
+improves user experience
+216 point of presence globally (edge locations)
+DDoS protection  integration with shield AWS web application firewall
+
+it has several types of origins:
+
+S3 bucket:
+    for distributing files and caching them at the edge
+    enhanced security with CloudFront origin access control (OAC)
+    OAC is replacing origin access identity
+    cloudfront can be used as in ingress ( to upload files to s3 )
+
+custom origin (HTTP):
+    application load balancer
+    ec2 instance
+    s3 website
+    any http backend
+
+cloudfront vs s3 cross region replication
+
+    cloudfront:
+        global edge network
+        files are cached for a TTL
+        great for static content that must be available everywhere
+
+    s3 cross region replication:
+        must be setup for each region you want replication to happen
+        files are updated in near real time
+        read only
+        dynamic content that changes everytime that needs to be available at low-latency in few regions
+
+        in summary:
+        cloud front is a CDN which is to cache content all around the world
+        whereareas S3 cross region replication is to really replicate an entire bucket into another region
+
+
+S3 transfer acceleration:
+as we know s3 bucket is linked to only one region and so sometimes you are looking to transfer files
+from all around the world into one specific bucket - and there is a way to speed up the transfer using
+s3 transfer acceleration => which will forward the data to the s3 bucket in the target region
+
+how does it work? file in USA => upload it into an edge location that is very close to our user in the USA
+and then using the internal network - the edge location will transfer the file into an S3 bucket in another region ( australia )
+
+
+AWS Global Accelerator
+improve global application availability and performance using the AWS global network
+leverage the AWS internal network to optimize the route to your application (60% improvement)
+2 anycast IP are created for your application and traffic is sent through edge locations
+for example user in USA => edge location => public application => edge location => usa
+
+global accelerator vs cloudfront
+
+they both use the AWS global network and it's edge locations around the world
+both services integrate with AWS shield for DDos protection
+cloud-front - content delivery network
+    improves performance for you cacheable content ( such as images and videos )
+    content is served at the edge
+
+global accelerator:
+    no caching, proxying packets at the edge to applications running in one or more AWS regions
+    improves performance for a wide range of applications over TCP or UDP
+    good for HTTP use cases that require static IP addresses
+    good for HTTP use cases that required deterministic, fast regional failover
+

@@ -23,6 +23,7 @@ weighted routing policy:
   assign weights for our EC2 instances and then our DNS will make sure that our clients will have
   the percentage (traffic) that was set on each ec2 => it is some kind of load balancing
   we can use health checks
+  so in summary the purpose is to distribute traffic between EC2 instances
 
 latency routing policy:
     will look at where the user is located - and if they are located close to US ec2 instance
@@ -30,8 +31,10 @@ latency routing policy:
     and this is based on latency
     in this case route 53 will be used to minimize the latency between the users
     and the servers by making the users connect to the server that is the closest to them
+    in summary - it's purpose is to minimize latency
 
 failover routing policy
     disaster recovery - in this case our DNS system will do a health check on the primary EC2 instance
     and in case the priumary instance fails then the route 53 will redirect us to the failover instance to help with
     disaster recovery
+    summary - to help with disaster recovery

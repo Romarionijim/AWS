@@ -1,0 +1,76 @@
+virtual private cloud - a way to isolate your recourses - it works like a private netwrok to isolate the resources within it
+route tables - contains a set of rules called routes that is used to determine where network traffic is directed
+subnets - set of network ip addresses, subnets represent a range of ip addresses that are logically are grouped together meaning they groupe
+a range of ip addresses in order to direct netwrok traffic to the correct destination kind of like a postal code or departments you can say in short
+that the purpose is to group to route traffic to the correct destination which increase the security and effciency of network communications
+
+CIDR - is used to represent ip address ranges and subnet masks
+When devices communicate, the networking infrastructure examines the CIDR notation of the source and destination IP addresses to determine whether they are in the same subnet. The CIDR notation includes information about the network portion of the IP address and the host portion.
+
+For example, consider two IP addresses within the CIDR notations "10.0.1.5/24" and "10.0.1.10/24". In this case, both IP addresses share the same network portion (10.0.1), as denoted by the "/24" subnet mask. Therefore, these devices are considered to be in the same subnet.
+
+If the CIDR notations differ, such as "10.0.1.5/24" and "10.0.2.10/24", the devices are in different subnets. In this scenario, a router is typically involved in directing traffic between these subnets.
+
+So, the CIDR notation is a crucial factor in determining the boundaries of subnets and plays a key role in the routing decisions made by networking devices.
+subnet mask - A subnet mask is a 32-bit number that separates an IP address into network and host parts. It uses a series of 1s followed by 0s. The 1s represent the network, and the 0s represent hosts. Subnetting helps organize and optimize IP addresses in a network.
+
+in a vpc you have a public subnet and a private subnet
+
+the steps to create a vpc:
+first step: creating the vpc:
+* in aws console - you go to vpc and create a vpc  
+* create two public subnets in two different AZ and two private subnets in two different AZ
+that way if an AZ goes down you will have high availability by having another AZ available to serve my applications
+* choose CIDR - public subnet CIDR should be differnt from private subnet CIDR
+example - public ipv4 CIDR block => 10.0.0.0/24
+private subnet => 10.0.0.1.0/24
+the CIDR must be in the range of the initial CIDR that you chose for your VPC such as 10.0.0.0/16
+* click create subnet
+we have to have subnets in orde to launch resources in our vpc - we cannot have a vpc without subnet , we need to put resources in the subnet
+
+second step: launch an ec2 instance inside the vpc
+*launch ec2 instance in our public subnet => in the ec2 creation in the vpc we need to choose the vpc that we created and choose the public subnet
+*auto assign public ip and set it to "enable"
+*create a key pair to ssh to the ec2 instance
+*create a seucrity group - must have ssh port 22 with a source type any where 0.0.0.0/0
+
+
+third step: allow internet access (internet gateway) to connect the vpc to another network in our case to the internet
+* go to internet gateways and create an internet gateway
+* attach the internet gateway to the vpc in the internet gateway page under actions then attach
+* we now have to give our subnnets a route to the internet gateway in order to connect to our ec2 that is inside the vpc
+* go to route tables and create two route tables (select the vpc in the route tables creation page) -  one for the public and one for the private
+* after creating the route table go to each of the route tables that were created and then to subnet associations and edit it and choose the 
+relevant subnet to assiocaite it with the route tables, the route tables belongs to the vpc and then we assiociate the route tables to each subnet
+after creating one for the public and one for the private, you can make sure they are routed to the correct subnet by clikcing on the routes table
+in the route tables
+
+fourth step: get the route table to route to the internet
+* after creating the route tables and assiociating them with the correct subnet - go to the public route table and click on the routes tab and
+click on edit - add route from anywhere 0.0.0.0/0 all ip addresses
+* choose the internet gateway in the target dropdown and choose your created internet gateway and save
+* now we can connect to the ec2 successfully now that we allowed access for it to the internet ofcourse we have a security group which is
+a virtual firewall that sets the rules what is allowed inside or outside to the ec2 , and we already have an a rule that we can ssh into the ec2 instannce
+
+
+fifth step: connect the private subnet to the internet (allow private to get information for the internet but not vice versa)
+* launch an ec2 for the private subnet by choosing the same vpc but the private subnet without rnabling public ip access
+* ssh to the private ec2 instance from the public ec2 instance - we need to upload our key to the ec2 instance
+command => ssh -i keyPaiFilename.pem ec2-user@ipAddressOfThePrivateEc2
+that way we connected to our private server from our public server since we cannot directly access our private server outside of the vpc
+but we still dont have access to the internet from the private server, in order to do that we must provide the private subnet a NAT gateway
+
+sixth step: connect to NAT gateway for the private server to access the internet:
+* we use it for our private subnet in a vpc can connect to services outside of the vpc but external services cannot connect to our private subnet in the vpc
+* first we create a NAT gateway in the public subnet because the public subnet has a route out to the internet, then we use our private route table
+to route out to the NAT gateway which will allow our private subnet to reach out to the internet.
+* go to subnets in the vpc screen and click on NAT gateways create NAT gateway -  sleect the private subnet - allocate elastic IP and create
+NAT gateway
+* go to the route tables and click on the private route tables and add a route to our NAT gateway from 0.0.0.0/0 target NAT gateway and save
+* after this is created we can successfully connect to the pivate instance from the oublic instance and update things such as yum update which are 
+reaches out to the internet
+
+
+
+
+

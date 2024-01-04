@@ -61,7 +61,7 @@ It ensures the specified number of tasks is running and handles the distribution
 summary:
 cluster => goruping of tasks or services (grouping of ec2 instances that hosts the containers)
 container instance => ec2 instance running the ecs agent that runs tasks on top of them
-task definition => bluepring that describes how a docker container should launch similar to a docker compose file kindof
+task definition => bluepring that describes how a docker container should launch similar to a docker compose file kindof (it uses an image that comes for a registry)
 task => a running container 
 service => defines long running tasks, can control task count with auto scaling and attach a load balancer ELB
 

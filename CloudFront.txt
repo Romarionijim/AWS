@@ -67,3 +67,9 @@ global accelerator:
     good for HTTP use cases that require static IP addresses
     good for HTTP use cases that required deterministic, fast regional failover
 
+summary:
+cdn => CDN is basically caching content to utilize and enhance performance so that users get the content in the most closest region depending where the app is hosted for better performance
+
+An Anycast IP improves routing efficiency by directing traffic to the nearest server, while a CDN (Content Delivery Network) uses multiple distributed servers to cache and deliver content, reducing latency and improving load times for users worldwide.
+
+

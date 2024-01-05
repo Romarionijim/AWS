@@ -2,3 +2,10 @@ Places AWS compute, storage, database, and other selected AWS services closer to
 applications
 the idea is that you will extend your AWS region => extend your VPC to more locations => extension of an AWS Region
 compatible with EC2, RDS, EC2, EBS, elasticashe, direct connect...
+
+
+"local zone" refers to a geographically specific extension of the AWS infrastructure that is designed to bring AWS services closer to specific geographic areas. These local zones are essentially data centers located in close proximity to a particular city or region.
+
+The primary purpose of local zones is to provide low-latency access to AWS services for customers in specific locations. By having these local zones closer to users, it reduces the time it takes for data to travel between the user and the AWS infrastructure, resulting in better performance and responsiveness for applications and services.
+
+In simple terms, you can think of a local zone as a mini data center that brings AWS services closer to users in a specific location, improving the speed and reliability of cloud-based applications.

@@ -1,0 +1,24 @@
+When you connect your mobile phone to the internet, it is assigned an IP address by the network you are connected to. This IP address is typically a public IP address that is unique to your device at that particular moment. It's important to note that the IP address assigned to your mobile phone is likely dynamic, meaning it may change each time you connect to the network.
+
+Now, let's discuss IP address ranges, subnets, and routing in more detail.
+
+IP Address Ranges and Subnets:
+
+IP addresses are divided into different classes (Class A, B, C, etc.), but more commonly, they are managed using CIDR (Classless Inter-Domain Routing) notation.
+CIDR notation expresses IP addresses and their routing prefix in the form of IP_address/prefix_length. For example, 192.168.1.0/24 represents the IP address range from 192.168.1.0 to 192.168.1.255, where the prefix length is 24 bits.
+Subnetting involves dividing a larger IP network into smaller, more manageable subnetworks or subnets.
+Routing:
+
+When you try to access a website from your mobile phone, the request goes through the local network infrastructure, such as Wi-Fi routers, cellular towers, etc.
+Each of these network devices has a routing table that helps them make decisions on how to forward the data. The routing table contains information about which IP address ranges are reachable through which interfaces.
+The request eventually reaches a router that connects your local network to the internet. This router, often operated by your Internet Service Provider (ISP), has a more extensive routing table that knows how to reach various IP address ranges on the internet.
+If your friend is also using their mobile phone on the same network, they will likely get a different dynamic IP address assigned to them. Even if they get an IP address from the same subnet, it will be a unique address.
+Network Address Translation (NAT):
+
+Many networks use Network Address Translation to allow multiple devices within a local network to share a single public IP address. This is common in homes and small businesses.
+In this scenario, the router performs NAT, translating the private IP addresses of devices on the local network into the public IP address assigned by the ISP.
+VPCs and Cloud Networking:
+
+In cloud environments like Amazon Web Services (AWS), Virtual Private Clouds (VPCs) allow you to create isolated networks and define the IP address ranges for those networks.
+Each VPC operates independently with its own CIDR block. When communicating between different VPCs or the internet, routing tables are used to direct traffic to the appropriate destination.
+In summary, when you access a website from your mobile phone, your request is routed through a series of networks, each with its own routing tables. IP addresses are assigned dynamically, and network devices use this addressing information to forward the data to its destination. Subnets and CIDR notation are tools used to efficiently manage and organize IP address spaces.

@@ -72,4 +72,6 @@ cdn => CDN is basically caching content to utilize and enhance performance so th
 
 An Anycast IP improves routing efficiency by directing traffic to the nearest server, while a CDN (Content Delivery Network) uses multiple distributed servers to cache and deliver content, reducing latency and improving load times for users worldwide.
 
+while both services contribute to improved performance, CloudFront focuses on content delivery through caching, and Global Accelerator is more about efficiently routing traffic to endpoints across different AWS regions. 
+
 

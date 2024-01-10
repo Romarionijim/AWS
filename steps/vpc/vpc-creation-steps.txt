@@ -1,0 +1,19 @@
+1. create a vpc
+2. create two public subnets in differnt AZ and two private subnets in different AZ
+3. choose a CIDR for the VPC for example 10.0.0.0/16
+4. choose CIDR range for both public subnets and private subnets - the subnets must be different 
+for example - first public subnet 10.0.0.0/24, private subnet 10.0.1.0/24 => second public 10.0.2.0/24 , second private 10.0.3.0/24
+5.create internet gateway to connect the vpc to the internet
+6.attach the internet gateway to the VPC
+7.create a route table in order for the subnets to route to the internet 
+    - one public route table -  select the vpc
+    - one private route table - select the vpc 
+8. go to subnet association and assiosiate the route table with the relevant subnet 
+9. go to the public route table and add a route to the internet - add a route from anywehere with CIDR 0.0.0.0/0 and choose inside the internet gateway
+that you just created earlier
+10. launch an ec2 instance by selecting the vpc and that way the ec2 instance will have access to the internet within that vpc -  enable public ip
+11. create a NAT gateway in the public subnet - choose the public subnet to connect the private instance to the internet via the public instnce 
+12. add a route to the private route table and choose the NAT gateway 
+13. launch ec2 instance for the private subnet without public ip
+14. ssh to the private subnet via the public subnet (public ec2 instance) 
+    - command => ssh -i keyPaiFilename.pem ec2-user@ipAddressOfThePrivateEc2

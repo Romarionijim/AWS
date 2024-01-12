@@ -1,0 +1,39 @@
+1. create ec2 instance - connect to the instance, install system updates (linux - yum update -y yum install and etc)
+    - clone the app repo
+    - install neccesary plugins
+2. create rds instance such as postgresql - and auto connect it to the ec2 instance that is in the same region, AZ abd VPC
+    - you dont have to auto connect - you can create each instance seperetly and create SG for each to allow traffic from ec2 to rds 
+3. make sure the rds is private under the private subnet and the ec2 under the public subnet 
+4. after automatically connecting them validate that both now have secuirty group that route traffic from the ec2 to the rds 
+5. after creating both and connecting them - import the db schema to the rds 
+    - create a dump file from your local db 
+    - import that file to the rds endpoint 
+6. create an automatic db backup file to s3 with a cron job
+    - ssh to the ec2 and run a bash script that copies the dump file from the rds db to the s3 bucket object with a cronjob
+    - you can use pg dump in this case 
+7. restore data from the rds locally 
+    - if using postgres i suggest using postgres docker container to "talk" to the rds - we need a db client in order to talk to the rds aws db
+    - copy the backup file from s3 to the current dir => cp s3://bucketName/filename . 
+    - to restore you must spin up and run the pg container - connect to it and move the dump file inside it 
+    for example =>  docker exec -i postgres psql -U postgres -c "CREATE ROLE rdsadmin LOGIN;"
+          docker exec -i postgres psql -U postgres -d postgres -f /automation_backup.sql
+8. make sure you db is connected to the same port and username and password as the container for it to have the restored db
+
+
+if you have a database.yml file 
+the dev environment should have the postgres container details which also is based on the docker compose given credentials
+and prod env should have the db credentials based on the aws rds credentials and endpoint
+
+Development Environment (docker-compose):
+
+Use Docker container details.
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+Production Environment (AWS RDS):
+
+Use AWS RDS details.
+POSTGRES_HOST (Endpoint of your AWS RDS instance)
+POSTGRES_DB (Name of your production database)
+POSTGRES_USER (Username for connecting to your RDS instance)
+POSTGRES_PASSWORD (Password for connecting to your RDS instance)
+

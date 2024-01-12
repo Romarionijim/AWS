@@ -13,7 +13,9 @@ for example - first public subnet 10.0.0.0/24, private subnet 10.0.1.0/24 => sec
 that you just created earlier
 10. launch an ec2 instance by selecting the vpc and that way the ec2 instance will have access to the internet within that vpc -  enable public ip
 11. create a NAT gateway in the public subnet - choose the public subnet to connect the private instance to the internet via the public instnce 
+    allocate elastic ip for the nat gateway
 12. add a route to the private route table and choose the NAT gateway 
 13. launch ec2 instance for the private subnet without public ip
 14. ssh to the private subnet via the public subnet (public ec2 instance) 
     - command => ssh -i keyPaiFilename.pem ec2-user@ipAddressOfThePrivateEc2
+15. create security group for the ec2 instances 

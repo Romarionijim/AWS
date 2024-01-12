@@ -1,0 +1,93 @@
+pre-requisites:
+1. we need an image from our app - you have to options to do that 
+    - build an image and deploy it to dockerhub and use the dockerhub repo in the task difinition - if t is a private dockerhub repo
+    you need to authenticate it with a token
+    - build an image and deploy it directly to ecr which is private by defult - tag it and push it to ecr
+
+    both options can be part of the ci pipeline where we build an image and deploy it to one of them 
+
+2. create a cluster that has the relevant resources to run the tasks / containers 
+3. create a task difinition which is a file that describes how to run the containers 
+    - in the task definition you need to type the image URI which is the URI from the ecr (view the push commands from the ecr after deploying the image there)
+    - or add the dockerhub repoUrl/image:tag 
+4. create a task or a service that defines the desired count of containers / tasks to run 
+    - select the lanuch type - if you select ec2 ( make sure you create them before - or you can create while creating the ecs)
+    - or you can select fargate which is fully managed by aws which is serverless - you dont need to provision servers at your end
+5. when creating the service select the cluster vpc with its public subnets 
+  - configure security group - or select an existing one that allows traffic from port 3000 range if your container runs on port 3000 
+  from anywhere 0.0.0.0/0 
+6. to see if the app is up, enter one of the task and get its ip and type it in the url 
+7. each task gets a different ip - in that case you can set up a load balancer that will have the same ip that the user interacts with 
+and the load balancer will balance the load and traffic to those tasks -  so at the end the load balancer will expose a single ip to the frontend/client
+8. if you wanna update the app code and rebuilt the image and update the image on the ecr and ecs you have few options 
+    - you can update the service and check the checkbox of force new deployment which will foce it to use the latest image and re deploy it 
+    - second option - create new rivison in the task definiton - go back to the service update and select the new rivision 
+
+
+multi-container application - ( setup docker-compose) for example an app and a db container - running on port 3000:
+steps creating an ecs for a multi-container application:
+1. create a SG for the ecs to allow traffic
+    - select the relevant vpc 
+    - inbound rules - allow traffic from any ip 0.0.0.0/0 
+    - same for outbound 
+    - create
+
+2. create a new task definition and choose the launch type 
+    - add the containers from dockerhub or ecr 
+    - add the db container first 
+        - type the port in the port mappings
+        - type in the environment variables in the env variables section as key value pairs 
+    - add the app container 
+        - type the port in the port mappings i.e port 3000
+        - specify environment variables if neccesary
+        - you can set a startup dependency ordering if container B depennds on container A ecxactly just like docker-compose 
+    - after adding both of the containers - add a volume if neccesary just like in docker compose - add in the volume section 
+        - to add a volume you need to define a colume type such as EFS 
+        -  go to EFS and create a EFS (network file system) 
+            - select AZ + subnets and the SG 
+            - go to ec2 console and create a new SG for the EFS 
+                - EFS-secuirty-group - select the vpc
+                - in the inbound rules add protocl of NFS and accept traffic from the secuirty group that was created for ecs
+                - go back to the EFS creation screen, refresh and select the newly created SG in both AZ and create 
+        - select the EFS in the file system ID after selecting EFS colume type in the add volume dialog and click on add 
+    - go back to the db container and go to storage and logging and add mount points to mount that volume to the db container (just like creating docker volumes to the container)
+        select the container path based on the db container doumentation - postgres for example is under => /var/lib/postgresql/data
+    - hit update and create the task definition file 
+    - create a service with the desired launch type (ec2 or fargate)
+    - specify the count of tasks, the task definition and the rest of the info and create 
+    - next select the vpc and the subnets 
+    - select the security group for the ecs 
+    - add an application load balancer 
+        - go to ec2 console and create an ALB 
+            - select the vpc and subnets 
+                 - create nw SG for the load balancer 
+                     - inbounnd rules - custom tcp - allow port 3000 or regular http port of 80 or https 443 - choose http 80 traffic frop anywhere
+                      you can setup a plicy that says any traffic that is recieved via port 80 - redirect it to the container port 3000
+                    - create the SG 
+        - after creating the SG for the ALB on http port 80 - select that SG in the ALB creation screen 
+        - in the listeners and routing section - choose protol http  port 80 and select tyarget group to forward it to port 300
+            - in the target group dropdown - create a target group
+                - for ecs - choose ip addresses as the target group type 
+                - the load balancer will be performing healthchecks - specify the check path for example root "/" or specific entity "/notes/
+                    this depends on the developed backend app entities and endpoints 
+                - override the traffic port and set it to the port of the containers i.e 3000 in this case.
+                - create target group 
+                - select it from the dropdown
+        - create the ALB 
+    - select the newly created load balancefr in the ecs service creation page 
+    - select the container to load balance to - in this case select the application and not the db to load the balance to load traffic to the app 
+    - in the container to load balance section select production listerenr port 80 and target group that we just created that forwards it to port 3000
+    exactly just like we did before 
+    - click next - you can specify ASG but this is optional if you don;t want to you can skip it 
+    - review your config and if everything is alright click create service 
+    - to test it - go to services and cliock on the service - click  on the target group ofn the service - inside click on the load balancer 
+        copy the load balancer dns name and go to postman or python requests 
+        and send a get method using theat dns name on port 80 => GET https://dnsName:80 which will forward it to port 3000 to the container 
+        or you can to the entitiy itself => GET https://dnsName/entityName
+    - you can go to your ecs secuirty group and make it more secure for the inbound rules to accept traffic from that load balancer instead
+    from anywhere - so in the port type 3000 as custom tcp and select the LB SG as the source 
+
+
+you have successfully deployed your app using thaat load balancer 
+                
+

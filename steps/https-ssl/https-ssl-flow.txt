@@ -1,0 +1,41 @@
+high level overview of the elb flow => user interacts with the app using the domain / dns => connects to the load balancer via httpport 80
+the load balancer forwards the traffic to the app to https 
+or load balancer custom domain SSL flow => client invokes it via domain https://domain.com => route 53 (DNS resolver) => ELB => APP 
+ 
+1. launch an ec2 instance with a web server (apache httpd for example) - and clone a repo or host index.html
+2. create ELB (ALB application load balancer) and point it to this EC2 
+    -  create load balancer ALB give it a name - select VPC and the subnet in AZ 
+    -  create a new secuirty group for the ALB - add inbound rule of http on port 80 and https on port 443 
+    -  after creating the SG go back to the ALB creation screen and select the new SG from the dropdown 
+    -  under the listener and routing section => leave it on protocl http on port 80 but create target group 
+        - in the target group creating screen select the ec2 instance that we already created 
+        - select the health check path , root or specific entity or index.html ["/", "/notes" , "/index.html"]
+        - create target group
+    - refresh the target group and select the newly created one 
+    the load balancer should be up and running with a dns name that leds to our website
+3. go to route 53 and register a domain - you should get name servers after register 
+    - open hosted zones click on the domain name that you created 
+        - under records the value route traffic to  records should match the addresses that were spotted in the name servers in the registered domains
+    - click create record - choose simple routing - click define simple record
+        - in the value route traffic section choose the following in the 3 consectuirive dropdowns
+        1. alias to applicationn and classic load balancer
+        2. region 
+        3. the laod balancer that you already created 
+    create records 
+
+4. to make it secure - create a certificate using Amazon certificate manager
+    - request a public certificaate
+    - give full domain name
+    - dns validation and confirm 
+    - click on the created certificate id and scroll rto the domains section 
+        - click on the "create records in route 53 tab" 
+        - then click on create records so that we could get a CNAME for that DNS domain 
+    - go back to route 5e and you will see that CNAME record for validation 
+    - validate the certificate status is issued 
+
+5. go back to the load balancer 
+    - under listeners - add https listener - under actions choose "forward" and select the target group that you created 
+    - edit the http port 80 listener - remove the forward to traffic http port 80 and add https port 443 so that if someone connected via 
+    http protol - they will be redirected to https on port 443 
+    - under the default SSL certificate section choose the ssl certificate that was issues and confirm 
+

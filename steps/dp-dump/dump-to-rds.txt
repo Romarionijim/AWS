@@ -1,0 +1,47 @@
+dump db to rds:
+
+create DB tables and declarations in sql file in vscode or in another text editor
+copy the db file to the container to a certain dir such as var lib postgres data and name it dump
+then connect to the rds endpoint make sure the rds has inbound secuirty group that allows connections and that rds is public with a name and password
+spin up a db container such as postgres for example 
+
+you can copy the db file directly into the container 
+using docker cp db_dump.sql container-name:/db_dump.sql
+connect to rds endpoint and dump the file 
+
+psql -h rds-endpoint -U postgres -d postgres -W -f /data_dump.sql - you will be promt to write the password for the rds password 
+
+that way you dumped the data to the rds 
+
+or you can create docker compose with a volume - get inside the container and create data inside the container 
+the data will be in /var/lib/postgresql/data 
+
+you can create a dump file from the data inside the container that is stored in the mentioned path by running the command
+
+pg_dump -h <your_local_host> -U <db-username> -d <database_name> -f /path/to/dump_file.sql -F p (-F p is for plain text) -c is for binary 
+
+after creating a dump file it should be located in the path you defined 
+
+if you wanna dmp t to rds you need to run:
+
+psql -h rds-endpoint -U postgres -d postgres -W -f /var/lib/postgresql/data/data_dump.sql - you will be promt to write the password for the rds password 
+
+that way you dumped the data to the rds 
+
+
+you can choose both options 
+
+to validate the data exist in the rds 
+connect to the rds via the container 
+
+
+psql -h rds-endpoint -U postgres -d postgres -W 
+enter password 
+
+list all tables - if postgres you run \dt 
+
+SELECT *  FROM tablename; 
+
+and you can see your data that is inside the rds
+
+
